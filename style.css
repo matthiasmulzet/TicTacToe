@@ -1,3 +1,42 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.d-none {
+    display: none;
+}
+
+.display-relative {
+    position: relative;
+}
+
+.player-panel {
+    display: flex;
+    font-size: 32px;
+    margin-bottom: 32px;
+}
+
+.player-panel div {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+    margin-left: 16px;
+}
+
+.player-panel img {
+    width: 60px;
+    height: 60px;
+    margin-right: 16px;
+}
+
+.player-inactive {
+    opacity: 0.5;
+}
+
 tr {
     width: 399px;
 }
@@ -42,6 +81,74 @@ table tr td:last-child {
     height: 80px;
 }
 
-.d-none {
-    display: none;
+.horizontal-line {
+    height: 10px;
+    width: 380px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    transform: scaleX(0.0);
+    transition: transform 225ms ease-in-out;
+    z-index: 1;
+}
+
+.make-vertical {
+    transform: rotate(90deg) scaleX(0.0);
+}
+
+.winner {
+    position: absolute;
+    top: 41.5px;
+    left: 41.5px;
+    height: 80%;
+    width: 80%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    animation: zoomIn 225ms ease-in-out;
+}
+
+.winner span {
+    position: absolute;
+    top: 10px;
+    left: 78px;
+    font-size: 35px;
+    color: white;
+}
+
+.winner img {
+    position: relative;
+    top: 140px;
+    left: 101px;
+    height: 130px;
+    width: 130px;
+    z-index: 2;
+}
+
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.restart-button {
+    position: absolute;
+    bottom: 60px;
+    width: 300px;
+    height: 100px;
+    font-size: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: #1c0b7f;
+    color: white;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.restart-button:hover {
+    background-color: rgb(59, 49, 165);
 }
