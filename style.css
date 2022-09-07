@@ -4,6 +4,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    font-family: 'Raleway';
+    margin: 0;
 }
 
 .d-none {
@@ -14,10 +16,30 @@ body {
     position: relative;
 }
 
+.points {
+    position: absolute;
+    top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+}
+
+.points span {
+    font-size: 70px;
+}
+
+.margin-points {
+    margin-left: 90px;
+    margin-right: 90px;
+}
+
 .player-panel {
     display: flex;
     font-size: 32px;
     margin-bottom: 32px;
+    margin-top: 50px;
 }
 
 .player-panel div {
@@ -93,15 +115,26 @@ table tr td:last-child {
 
 .make-vertical {
     transform: rotate(90deg) scaleX(0.0);
+    transition: transform 225ms ease-in-out;
+}
+
+.make-diagonal-45deg {
+    transform: rotate(45deg) scaleX(0.0);
+    transition: transform 225ms ease-in-out;
+}
+
+.make-diagonal-minus45deg {
+    transform: rotate(-45deg) scaleX(0.0);
+    transition: transform 225ms ease-in-out;
 }
 
 .winner {
     position: absolute;
-    top: 41.5px;
+    top: 0;
     left: 41.5px;
     height: 80%;
     width: 80%;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.8);
     z-index: 2;
     animation: zoomIn 225ms ease-in-out;
 }
@@ -109,15 +142,52 @@ table tr td:last-child {
 .winner span {
     position: absolute;
     top: 10px;
-    left: 78px;
+    left: 72px;
     font-size: 35px;
     color: white;
+    font-weight: bold;
 }
 
 .winner img {
     position: relative;
-    top: 140px;
-    left: 101px;
+    top: 80px;
+    left: 90px;
+    height: 150px;
+    width: 150px;
+    z-index: 2;
+}
+
+.draw {
+    position: absolute;
+    top: 0;
+    left: 41.5px;
+    height: 80%;
+    width: 80%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2;
+    animation: zoomIn 225ms ease-in-out;
+}
+
+.draw span {
+    position: absolute;
+    top: 10px;
+    left: 38px;
+    font-size: 35px;
+    color: white;
+    font-weight: bold;
+}
+
+.draw-image-container {
+    position: relative;
+    top: 92px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.draw-image-container img {
+    position: relative;
     height: 130px;
     width: 130px;
     z-index: 2;
@@ -137,11 +207,12 @@ table tr td:last-child {
 }
 
 .restart-button {
-    position: absolute;
-    bottom: 60px;
-    width: 300px;
-    height: 100px;
-    font-size: 40px;
+    position: relative;
+    top: 110px;
+    left: 39px;
+    width: 250px;
+    height: 60px;
+    font-size: 35px;
     border: 1px solid rgba(0, 0, 0, 0.5);
     background-color: #1c0b7f;
     color: white;
@@ -151,4 +222,42 @@ table tr td:last-child {
 
 .restart-button:hover {
     background-color: rgb(59, 49, 165);
+}
+
+@media (max-width: 450px) {
+    .player-panel div {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .player-1 {
+        margin-left: 0px !important;
+        margin-right: 15px !important;
+    }
+
+    .player-2 {
+        margin-left: 8px !important;
+        margin-right: 0px !important;
+    }
+}
+
+
+@media (max-width: 430px) {
+    .points span {
+        font-size: 60px;
+    }
+
+    .margin-points {
+        margin-left: 60px;
+        margin-right: 60px;
+    }
+
+    .player-panel {
+        font-size: 24px;
+    }
+
+    .player-panel img {
+        width: 50px;
+        height: 50px;
+    }
 }
