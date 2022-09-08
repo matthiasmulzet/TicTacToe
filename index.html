@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="icon" type="image/x-icon" href="img/tictactoe.jpg">
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fonts.css">
     <script src="script.js"></script>
@@ -14,12 +16,14 @@
 </head>
 
 <body>
+    <!-- Scorer -->
     <div class="points">
         <span id="circle-points">0</span>
         <span class="margin-points">:</span>
         <span id="cross-points">0</span>
     </div>
 
+    <!-- shows which player's turn it is -->
     <div class="player-panel">
         <div id="player-1" class="player-1">
             <img src="./img/circle.png">Player 1
@@ -29,14 +33,16 @@
         </div>
     </div>
 
-    <div class="display-relative">
 
+    <div class="display-relative">
+        <!-- appears when someone won -->
         <div id="winner-container" class="winner d-none">
             <span>Gewonnen</span>
             <img id="winner-image">
             <button onclick="restart()" class="restart-button" id="restart-button">Restart</button>
         </div>
 
+        <!-- appears when nobody won -->
         <div id="draw-container" class="draw d-none">
             <span>Unentschieden</span>
             <div class="draw-image-container">
@@ -46,6 +52,7 @@
             <button onclick="restart()" class="restart-button" id="restart-button">Restart</button>
         </div>
 
+        <!-- this are the lines who mark the winner row -->
         <div id="line-1" class="horizontal-line" style="top: 60px; left: 16px;"></div>
         <div id="line-2" class="horizontal-line" style="top: 200px; left: 16px;"></div>
         <div id="line-3" class="horizontal-line" style="top: 340px; left: 16px"></div>
@@ -54,6 +61,8 @@
         <div id="line-6" class="horizontal-line make-vertical" style="top: 203px; left: 157px;"></div>
         <div id="line-7" class="horizontal-line make-diagonal-45deg" style="top: 203px; left: 17px;"></div>
         <div id="line-8" class="horizontal-line make-diagonal-minus45deg" style="top: 203px; left: 17px;"></div>
+
+        <!-- the playground -->
         <table>
             <tr>
                 <td onclick="fillShape(0)">

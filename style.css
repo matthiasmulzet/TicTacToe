@@ -193,7 +193,6 @@ table tr td:last-child {
     z-index: 2;
 }
 
-
 @keyframes zoomIn {
     from {
         opacity: 0;
@@ -223,6 +222,7 @@ table tr td:last-child {
 .restart-button:hover {
     background-color: rgb(59, 49, 165);
 }
+
 
 @media (max-width: 450px) {
     .player-panel div {
@@ -260,4 +260,132 @@ table tr td:last-child {
         width: 50px;
         height: 50px;
     }
+}
+
+
+@media (max-width: 405px) {
+    #line-4 {
+        left: -110px !important;
+    }
+
+    #line-6 {
+        left: 145px !important;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+    .winner span {
+        left: 54px;
+    }
+
+    .winner img {
+        left: 68px;
+    }
+
+    .restart-button {
+        left: 22px;
+    }
+
+    .horizontal-line {
+        width: 350px;
+    }
+}
+
+
+@media (max-width: 370px) {
+    .points span {
+        font-size: 55px;
+    }
+
+    .player-panel img {
+        width: 45px;
+        height: 45px;
+        margin-right: 12px;
+    }
+
+    .player-panel {
+        font-size: 20px;
+        margin-top: 30px;
+    }
+
+    td {
+        width: 90px;
+        height: 95px;
+    }
+
+    .shape {
+        top: 9.5px;
+        left: 6.5px;
+    }
+
+    .horizontal-line {
+        width: 270px;
+    }
+
+    #line-1 {
+        top: 44px !important;
+        left: 9px !important;
+    }
+
+    #line-2 {
+        top: 147px !important;
+        left: 9px !important;
+    }
+
+    #line-3 {
+        top: 248px !important;
+        left: 9px !important;
+    }
+
+    #line-4 {
+        top: 148px !important;
+        left: -89px !important;
+    }
+
+    #line-5 {
+        top: 148px !important;
+        left: 8px !important;
+    }
+
+    #line-6 {
+        top: 148px !important;
+        left: 106px !important;
+    }
+
+    #line-7 {
+        top: 146px !important;
+        left: 6px !important;
+    }
+
+    #line-8 {
+        top: 146px !important;
+        left: 9px !important; 
+    }
+
+    .winner {
+        left: 27.5px;
+        height: 90%;
+    }
+
+    .winner span{
+        left: 19px;
+    }
+
+    .winner img {
+        left: 45px;
+        top: 62px;
+        height: 130px;
+        width: 130px;
+
+    }
+
+    .restart-button {
+        top: 85px;
+        width: 186px;
+        height: 45px;
+        font-size: 28px;
+    }
+
 }
