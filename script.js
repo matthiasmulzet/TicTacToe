@@ -1,4 +1,5 @@
 let fields = [];
+let noWinner = true;
 
 let gameOver = false;
 let draw = false;
@@ -69,6 +70,7 @@ function restart() {
     document.getElementById("draw-container").classList.add('d-none');
     fields = [];
     whichPlayerStart();
+    noWinner = true;
 }
 
 
@@ -98,78 +100,77 @@ function removeSymbolsAndLines() {
 
 
 function checkForWin() {
-    let winner;
-
-    if (fields[0] == fields[1] && fields[1] == fields[2] && fields[0]) {
-        winner = fields[0];
-        winnerCircleOrCross(0);
-
-        document.getElementById('line-1').style.transform = 'scaleX(1)';
+    checkForVerticalWin();
+    if(noWinner == true) {
+        checkForHorizontalWin();
     }
-
-    else if (fields[3] == fields[4] && fields[4] == fields[5] && fields[3]) {
-        winner = fields[3];
-        winnerCircleOrCross(3);
-
-        document.getElementById('line-2').style.transform = 'scaleX(1)';
+    if(noWinner == true) {
+        checkForDiagonalWin();
     }
-
-    else if (fields[6] == fields[7] && fields[7] == fields[8] && fields[6]) {
-        winner = fields[6];
-        winnerCircleOrCross(6);
-
-        document.getElementById('line-3').style.transform = 'scaleX(1)';
+    if (noWinner == false) {
+        showWinner();
     }
-
-    else if (fields[0] == fields[3] && fields[3] == fields[6] && fields[0]) {
-        winner = fields[0];
-        winnerCircleOrCross(0);
-
-        document.getElementById('line-4').style.transform = 'rotate(90deg) scaleX(1)';
-    }
-
-    else if (fields[1] == fields[4] && fields[4] == fields[7] && fields[1]) {
-        winner = fields[1];
-        winnerCircleOrCross(1);
-
-        document.getElementById('line-5').style.transform = 'rotate(90deg) scaleX(1)';
-    }
-
-    else if (fields[2] == fields[5] && fields[5] == fields[8] && fields[2]) {
-        winner = fields[2];
-        winnerCircleOrCross(2);
-
-        document.getElementById('line-6').style.transform = 'rotate(90deg) scaleX(1)';
-    }
-
-    else if (fields[0] == fields[4] && fields[4] == fields[8] && fields[0]) {
-        winner = fields[0];
-        winnerCircleOrCross(0);
-
-        document.getElementById('line-7').style.transform = 'rotate(45deg) scaleX(1)';
-    }
-
-    else if (fields[2] == fields[4] && fields[4] == fields[6] && fields[2]) {
-        winner = fields[2];
-        winnerCircleOrCross(2);
-
-        document.getElementById('line-8').style.transform = 'rotate(-45deg) scaleX(1)';
-    }
-
-    if (winner) {
-        AUDIO_WINNER.play();
-        document.getElementById('circle-points').innerHTML = circlePoints;
-        document.getElementById('cross-points').innerHTML = crossPoints;
-        gameOver = true;
-        setTimeout(function () {
-            document.getElementById('winner-container').classList.remove('d-none');
-        }, 1000);
-    }
-
-    if (fields[0] && fields[1] && fields[2] && fields[3] && fields[4]
-        && fields[5] && fields[6] && fields[7] && fields[8] && gameOver == false) {
+    if (checkForDraw()) {
         document.getElementById("draw-container").classList.remove('d-none');
     }
+}
+
+
+function checkForDraw() {
+    return fields[0] && fields[1] && fields[2] && fields[3] && fields[4]
+    && fields[5] && fields[6] && fields[7] && fields[8] && gameOver == false;
+}
+
+
+function checkForVerticalWin() {
+    if (rowFirstLineVertical()) {
+        winnerFirstLineVertical();
+    }
+
+    else if (rowSecondLineVertical()) {
+        winnerSecondLineVertical();
+    }
+
+    else if (rowThirdLineVertical()) {
+        winnerThirdLineVertical();
+    }
+}
+
+
+function checkForHorizontalWin() {
+    if (rowFirstLineHorizontal()) {
+        winnerFirstLineHorizontal();
+    }
+
+    else if (rowSecondLineHorizontal()) {
+        winnerSecondLineHorizontal();
+    }
+
+    else if (rowThirdLineHorizontal()) {
+        winnerThirdLineHorizontal();
+    }
+}
+
+
+function checkForDiagonalWin() {
+    if (rowFirstLineDiagonal()) {
+        winnerFirstLineDiagonal();
+    }
+
+    else if (rowSecondLineDiagonal()) {
+        winnerSecondLineDiagonal();
+    }
+}
+
+
+function showWinner() {
+    AUDIO_WINNER.play();
+    document.getElementById('circle-points').innerHTML = circlePoints;
+    document.getElementById('cross-points').innerHTML = crossPoints;
+    gameOver = true;
+    setTimeout(function () {
+        document.getElementById('winner-container').classList.remove('d-none');
+    }, 1000);
 }
 
 
@@ -194,4 +195,102 @@ function checkWinnerCircle() {
     document.getElementById('winner-image').src = "./img/circle.png";
     circlePoints++;
 }
+
+
+function rowFirstLineVertical() {
+    return fields[0] == fields[1] && fields[1] == fields[2] && fields[0];
+}
+
+
+function winnerFirstLineVertical() {
+    winnerCircleOrCross(0);
+    document.getElementById('line-1').style.transform = 'scaleX(1)';
+    noWinner = false;
+}
+
+
+function rowSecondLineVertical() {
+    return fields[3] == fields[4] && fields[4] == fields[5] && fields[3];
+}
+
+
+function winnerSecondLineVertical() {
+    winnerCircleOrCross(3);
+    document.getElementById('line-2').style.transform = 'scaleX(1)';
+    noWinner = false;
+}
+
+
+function rowThirdLineVertical() {
+    return fields[6] == fields[7] && fields[7] == fields[8] && fields[6];
+}
+
+
+function winnerThirdLineVertical() {
+    winnerCircleOrCross(6);
+    document.getElementById('line-3').style.transform = 'scaleX(1)';
+    noWinner = false;
+}
+
+
+function rowFirstLineHorizontal() {
+    return fields[0] == fields[3] && fields[3] == fields[6] && fields[0];
+}
+
+
+function winnerFirstLineHorizontal() {
+    winnerCircleOrCross(0);
+    document.getElementById('line-4').style.transform = 'rotate(90deg) scaleX(1)';
+    noWinner = false;
+}
+
+
+function rowSecondLineHorizontal() {
+    return fields[1] == fields[4] && fields[4] == fields[7] && fields[1];
+}
+
+
+function winnerSecondLineHorizontal() {
+    winnerCircleOrCross(1);
+    document.getElementById('line-5').style.transform = 'rotate(90deg) scaleX(1)';
+    noWinner = false;
+}
+
+
+function rowThirdLineHorizontal() {
+    return fields[2] == fields[5] && fields[5] == fields[8] && fields[2];
+}
+
+
+function winnerThirdLineHorizontal() {
+    winnerCircleOrCross(2);
+    document.getElementById('line-6').style.transform = 'rotate(90deg) scaleX(1)';
+    noWinner = false;
+}
+
+
+function rowFirstLineDiagonal() {
+    return fields[0] == fields[4] && fields[4] == fields[8] && fields[0];
+}
+
+
+function winnerFirstLineDiagonal() {
+    winnerCircleOrCross(0);
+    document.getElementById('line-7').style.transform = 'rotate(45deg) scaleX(1)';
+    noWinner = false;
+}
+
+
+function rowSecondLineDiagonal() {
+    return fields[2] == fields[4] && fields[4] == fields[6] && fields[2];
+}
+
+
+function winnerSecondLineDiagonal() {
+    winnerCircleOrCross(2);
+    document.getElementById('line-8').style.transform = 'rotate(-45deg) scaleX(1)';
+    noWinner = false;
+}
+
+
 
